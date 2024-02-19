@@ -273,8 +273,9 @@ class SignupViewController: UIViewController {
     }
     
     @objc func  signinBtnTapped(){
-        let vc = SigninViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        
+       // navigationController?.popViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     @objc func togglePasswordVisibility() {
@@ -293,7 +294,7 @@ class SignupViewController: UIViewController {
         }
         let messageTF = fullnameTF.text
         let vc = LoginViewController()
-        vc.messageTF.text = messageTF ?? ""
+       // vc.messageTF.text = messageTF ?? ""
         vc.useridTF.text =  messageTF ?? ""
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -309,11 +310,11 @@ class SignupViewController: UIViewController {
               let confirmPassword = confirmPasswordTF.text, !confirmPassword.isEmpty
         else {
             setIncorrectStyle()
-            fullnameLbl.text = "Ошибка! Некоторые поля не заполнены"
+            fullnameLbl.text = "Заполните, пожалуйста!"
             fullnameLbl.textColor = .red
             return false
         }
-        //
+        
         return true
         
     }

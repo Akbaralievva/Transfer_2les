@@ -64,13 +64,9 @@
 		CF6CAE3E2B7EA1C4003AE4B2 /* Home_4month_2 */ = {
 			isa = PBXGroup;
 			children = (
-				CF6CAE3F2B7EA1C4003AE4B2 /* AppDelegate.swift */,
-				CF6CAE412B7EA1C4003AE4B2 /* SceneDelegate.swift */,
-				CF6CAE532B7EB3A5003AE4B2 /* MakerView.swift */,
+				CFDF8BD02B83C04800CC1B4D /* AppDelegate */,
+				CFDF8BD12B83C08600CC1B4D /*  Resources */,
 				CF7072BC2B7FCF0500076261 /* Views */,
-				CF6CAE5D2B7ECDC0003AE4B2 /* SuccessViewController.swift */,
-				CF6CAE482B7EA1C7003AE4B2 /* Assets.xcassets */,
-				CF6CAE4A2B7EA1C7003AE4B2 /* LaunchScreen.storyboard */,
 				CF6CAE4D2B7EA1C7003AE4B2 /* Info.plist */,
 			);
 			path = Home_4month_2;
@@ -79,12 +75,32 @@
 		CF7072BC2B7FCF0500076261 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CF6CAE532B7EB3A5003AE4B2 /* MakerView.swift */,
 				CF6CAE552B7EBCC0003AE4B2 /* SigninViewController.swift */,
 				CF6CAE572B7ECD73003AE4B2 /* SignupViewController.swift */,
 				CF6CAE592B7ECD8F003AE4B2 /* LoginViewController.swift */,
 				CF6CAE5B2B7ECDA8003AE4B2 /* NewPasswordViewController.swift */,
+				CF6CAE5D2B7ECDC0003AE4B2 /* SuccessViewController.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		CFDF8BD02B83C04800CC1B4D /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				CF6CAE3F2B7EA1C4003AE4B2 /* AppDelegate.swift */,
+				CF6CAE412B7EA1C4003AE4B2 /* SceneDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		CFDF8BD12B83C08600CC1B4D /*  Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CF6CAE482B7EA1C7003AE4B2 /* Assets.xcassets */,
+				CF6CAE4A2B7EA1C7003AE4B2 /* LaunchScreen.storyboard */,
+			);
+			path = " Resources";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

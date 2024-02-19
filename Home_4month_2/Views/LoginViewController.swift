@@ -8,24 +8,20 @@
 import UIKit
 
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     private lazy var backgroundImageView: UIImageView = {
-        
-        
         let imageView = UIImageView(image: UIImage(named: "block"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     
-    var messageTF = MakerView().makeTextField(placeholder: " ", size: 18,textColor: UIColor(named: "textColor") ?? .systemGray, backgroundColor: .systemGray, cornerRadius: 20)
+    var messageTF = MakerView().makeTextField(placeholder: " ", size: 18,textColor: UIColor(named: "textColor") ?? .systemGray, backgroundColor: .systemGray, cornerRadius: 20, isEnabled: false)
     
     private lazy var textLbl = MakerView().makerLabel(text: "Trouble Logging in?", size: 25, weight: .semibold, textColor: .white)
     
     private lazy var explaintextLbl = MakerView().makerLabel(text: "Enter your email or  mobile number and we'll send you a OTP to get back into your account.", size: 13, textColor: .white, numberOfLines: 0)
-    
-    
     
     private  lazy var bannerView: UIView = {
         let view = UIView()
@@ -34,9 +30,6 @@ class LoginViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-    
-    
     
     private lazy var useridLbl = MakerView().makerLabel(text: "Employee Id",size: 14)
     
@@ -60,7 +53,7 @@ class LoginViewController: UIViewController {
     private lazy var getBtn: UIButton = {
         let button = MakerView().makerButton(
             title: "Get OTP",
-            titleColor: .white, titleFont: UIFont.systemFont(ofSize: 16, weight: .semibold), backgroundColor: .systemYellow, cornerRadius: 18)
+            titleColor: .white, titleFont: UIFont.systemFont(ofSize: 16, weight: .semibold), backgroundColor: .systemYellow, cornerRadius: 18, isEnable: false)
         
         button.addTarget(self, action: #selector(getBtnTapped), for: .touchUpInside)
         return button
@@ -71,7 +64,7 @@ class LoginViewController: UIViewController {
     private lazy var submitBtn: UIButton = {
         let button = MakerView().makerButton(
             title: "Submit",
-            titleFont: UIFont.systemFont(ofSize: 20, weight: .semibold), backgroundColor: UIColor(named: "submitgreen") ?? .systemGreen, cornerRadius: 18)
+            titleFont: UIFont.systemFont(ofSize: 20, weight: .semibold), backgroundColor: UIColor(named: "submitgreen") ?? .systemGreen, cornerRadius: 18, isEnable: false)
         
         button.addTarget(self, action: #selector(submitBtnTapped), for: .touchUpInside)
         return button
@@ -83,6 +76,14 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "backColor")
         setupView()
+        
+        getBtn.isEnabled = false
+        messageTF.isEnabled = false
+        submitBtn.isEnabled = false
+        
+        
+        useridTF.delegate = self
+        messageTF.delegate = self
     }
     
     
@@ -178,45 +179,29 @@ class LoginViewController: UIViewController {
     }
     
     
-    private func check() -> Bool {
-        guard let userid = useridTF.text, !userid.isEmpty
-        else {
-            setIncorrectStyle()
-            useridLbl.text = "Ошибка! Некоторые поля не заполнены"
-            return true
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == useridTF {
+            getBtn.isEnabled = !(textField.text ?? "").isEmpty
+        } else if textField == messageTF {
+            submitBtn.isEnabled = !(textField.text ?? "").isEmpty
         }
-        let vc = NewPasswordViewController()
-        navigationController?.pushViewController(vc, animated: true)
         return true
     }
     
-    private func setIncorrectStyle() {
-        useridLbl.text = "Ошибка!"
-        useridLbl.textColor = .red
-        
-        useridTF.layer.borderWidth = 1
-        useridTF.layer.borderColor = UIColor.red.cgColor
-        
-        
-    }
-    
-    
     @objc private func getBtnTapped() {
-        guard check() else {
-            return
-        }
+        messageTF.isEnabled = true
     }
-    
     
     @objc private func submitBtnTapped() {
-        
-        guard check() else {
+        guard let userid = useridTF.text, !userid.isEmpty,
+              let message = messageTF.text, !message.isEmpty else {
             return
         }
-        
-        
+        let vc = NewPasswordViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
-    
 }
+
+
 

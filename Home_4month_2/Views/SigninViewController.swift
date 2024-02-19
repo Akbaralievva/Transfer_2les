@@ -289,7 +289,7 @@ class SigninViewController: UIViewController {
         guard let password = passwordTF.text, !password.isEmpty,
               let email = emailTF.text, !email.isEmpty else {
             setIncorrectStyle()
-            continueTextLbl.text = "Ошибка! Некоторые поля не заполнены"
+            continueTextLbl.text = "Заполните, пожалуйста"
             return false
         }
         

@@ -48,6 +48,7 @@ class MakerView {
                        textAlignment: NSTextAlignment = .left,
                        borderStyle: UITextField.BorderStyle = .none,
                        isSecureTextEntry: Bool = false,
+                       isEnabled:Bool = true,
                        translateAutoresizingMaskIntoConstraints: Bool = false
     ) -> UITextField {
         let textField = UITextField()
@@ -60,6 +61,7 @@ class MakerView {
         textField.textAlignment = textAlignment
         textField.borderStyle = borderStyle
         textField.isSecureTextEntry = isSecureTextEntry
+        textField.isEnabled = isEnabled
         textField.translatesAutoresizingMaskIntoConstraints = translateAutoresizingMaskIntoConstraints
         return textField
     }
@@ -73,6 +75,7 @@ class MakerView {
                      contentEdgeInsets: UIEdgeInsets = .zero,
                      borderColor: UIColor? = nil,
                      borderWidth: CGFloat = 0,
+                     isEnable: Bool = true,
                      translatesAutoresizingMaskIntoConstraints: Bool = false
     ) -> UIButton {
         let button = UIButton()
@@ -83,6 +86,7 @@ class MakerView {
         button.layer.cornerRadius = cornerRadius
         button.contentEdgeInsets = contentEdgeInsets
         button.layer.borderWidth = borderWidth
+        button.isEnabled = isEnable
         button.translatesAutoresizingMaskIntoConstraints = translatesAutoresizingMaskIntoConstraints
         return button
     }
